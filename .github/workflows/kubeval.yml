@@ -21,3 +21,10 @@ jobs:
       - uses: instrumenta/kubeval-action@master
         with:
           files: k8s
+
+      - uses: act10ns/slack@v1
+        with: 
+          status: ${{ job.status }}
+          webhook-url: ${{ secrets.SLACK_WEBHOOK_URL }}
+          channel: '#monitoring'
+        if: always()
