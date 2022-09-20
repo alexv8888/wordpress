@@ -20,4 +20,4 @@ jobs:
 
       - uses: dipshit/kubeval@1.0
         with:
-          params: '*.yaml'
+          params: [ '--schema-location https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master', '*.yaml']
