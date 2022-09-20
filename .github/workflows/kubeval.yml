@@ -18,6 +18,4 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
 
-      - uses: dipshit/kubeval@1.0
-        with:
-          params: [ '--schema-location https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master', '*.yaml']
+      - uses: instrumenta/kubeval-action@master
