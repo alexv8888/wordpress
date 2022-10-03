@@ -15,16 +15,26 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
+    
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+    
       - uses: actions/checkout@v3
 
       - uses: instrumenta/kubeval-action@master
         with:
           files: k8s
+          
+      - name: lint
+        uses: luke142367/Docker-Lint-Action@v1.0.0
+        with:
+          target: Dockerfile
+        env:
+          GITHUB_TOKEN: ${{ secrets.TOKEN }}
 
-      - uses: act10ns/slack@v1
-        with: 
-          status: ${{ job.status }}
-          webhook-url: ${{ secrets.SLACK_WEBHOOK_URL }}
-          channel: '#monitoring'
-        if: always()
+
+      #- uses: act10ns/slack@v1
+      #  with: 
+      #    status: ${{ job.status }}
+      #    webhook-url: ${{ secrets.SLACK_WEBHOOK_URL }}
+      #    channel: '#monitoring'
+      #  if: always()
